@@ -116,23 +116,7 @@ jobs:
             exit 1
           }
 
-      # ---- Private engine fetch (moved out of the public tree in 33ff9b5) --------------------------
-      # Apple builds BOTH engines: StremioXCore.xcframework from core/ AND VortxEngine.xcframework
-      # from vortx-core/. Pinned to the exact commits the current beta build links. Requires the
-      # ENGINE_REPO_TOKEN secret (fine-grained PAT, Contents:read on both private repos; deploy keys
-      # are disabled by the VortXTV org). Both fetches use actions/checkout (GitHub's own auth path:
-      # the token is injected through an env-sourced local git config, never argv, and
-      # persist-credentials: false wipes it after the step). Fails closed: an empty secret or a
-      # missing crate manifest kills the job (no silent build-without-engine).
-      - name: Preflight the engine token (fail closed)
-        env:
-      #     ENGINE_REPO_TOKEN: ${{ secrets.ENGINE_REPO_TOKEN }}
-      #   run: |
-       #    set -euo pipefail
-         #  if [ -z "${ENGINE_REPO_TOKEN:-}" ]; then
-         #    echo "::error::ENGINE_REPO_TOKEN secret is not set; CI cannot fetch the private engine repos (VortXTV/stremiox-core + VortXTV/vortx-core)"
-        #     exit 1
-         #  fi
+     
 
       # stremiox-core is a STANDALONE crate (Cargo.toml at its repo root): check out straight into core/.
       - name: Fetch stremiox-core (private, pinned)
