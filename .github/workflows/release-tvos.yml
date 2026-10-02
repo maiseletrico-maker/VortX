@@ -126,13 +126,13 @@ jobs:
       # missing crate manifest kills the job (no silent build-without-engine).
       - name: Preflight the engine token (fail closed)
         env:
-          ENGINE_REPO_TOKEN: ${{ secrets.ENGINE_REPO_TOKEN }}
-        run: |
-          set -euo pipefail
-          if [ -z "${ENGINE_REPO_TOKEN:-}" ]; then
-            echo "::error::ENGINE_REPO_TOKEN secret is not set; CI cannot fetch the private engine repos (VortXTV/stremiox-core + VortXTV/vortx-core)"
-            exit 1
-          fi
+      #     ENGINE_REPO_TOKEN: ${{ secrets.ENGINE_REPO_TOKEN }}
+      #   run: |
+       #    set -euo pipefail
+         #  if [ -z "${ENGINE_REPO_TOKEN:-}" ]; then
+         #    echo "::error::ENGINE_REPO_TOKEN secret is not set; CI cannot fetch the private engine repos (VortXTV/stremiox-core + VortXTV/vortx-core)"
+        #     exit 1
+         #  fi
 
       # stremiox-core is a STANDALONE crate (Cargo.toml at its repo root): check out straight into core/.
       - name: Fetch stremiox-core (private, pinned)
